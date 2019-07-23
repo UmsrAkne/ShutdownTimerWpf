@@ -10,6 +10,9 @@ namespace ShutDownTimer2 {
     class MainViewModel : System.ComponentModel.INotifyPropertyChanged{
         public event PropertyChangedEventHandler PropertyChanged = null;
 
+        public delegate void WarningDisplaying();
+        public event WarningDisplaying warningDisplaying;
+
         private DispatcherTimer timer;
 
         private int remainingCounter = 60 * 60 * 3;
@@ -44,6 +47,11 @@ namespace ShutDownTimer2 {
                     timer.Stop();
                     return;
                 }
+
+                //  残り時間が１５分を切ったら警告イベントを発行する
+                if(remainingCounter == 60 * 15) {
+                    warningDisplaying();
+                }   
 
                 BindingDate = DateTime.MinValue.AddSeconds(remainingCounter).ToString("HH:mm:ss");
             };

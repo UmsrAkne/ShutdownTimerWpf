@@ -24,6 +24,12 @@ namespace ShutDownTimer2 {
         public MainWindow() {
             InitializeComponent();
             mainViewModel = new MainViewModel();
+            mainViewModel.warningDisplaying += () => {
+                Topmost = true;
+                MessageBox.Show("残り１５分を切りました");
+                Topmost = false;
+            };
+
             this.DataContext = mainViewModel;
         }
 
