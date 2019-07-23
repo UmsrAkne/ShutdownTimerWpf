@@ -12,13 +12,15 @@ namespace ShutDownTimer2 {
 
         private DispatcherTimer timer;
 
-        private String bindingDate = "日時が入ります";
+        private int remainingCounter = 60 * 60 * 3;
+
+        private String bindingDate = DateTime.MinValue.AddHours(3).AddYears(1).ToString("HH:mm:ss");
         public String BindingDate {
             get {
-                return this.bindingDate;
+                return bindingDate;
             }
             set {
-                this.bindingDate = value;
+                bindingDate = value;
                 this.OnPropertyChanged(nameof(BindingDate));
                 return;
             }
@@ -35,8 +37,29 @@ namespace ShutDownTimer2 {
         private void setupTimer() {
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Tick += (sender , e) => { System.Diagnostics.Trace.WriteLine("test"); };
+
+            timer.Tick += (sender , e) => {
+                remainingCounter -= 1;
+                if(remainingCounter <= 0) {
+                    timer.Stop();
+                    return;
+                }
+
+                BindingDate = DateTime.MinValue.AddSeconds(remainingCounter).ToString("HH:mm:ss");
+            };
+
             timer.Start();
+        }
+
+        public void addTime( int additionSec ) {
+            remainingCounter += additionSec;
+        }
+
+        /// <summary>
+        /// 実行するとこのPCを数十秒後にシャットダウンします。
+        /// </summary>
+        public void shutDown() {
+
         }
     }
 }
