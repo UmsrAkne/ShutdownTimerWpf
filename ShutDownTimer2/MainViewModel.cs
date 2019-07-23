@@ -52,6 +52,11 @@ namespace ShutDownTimer2 {
         }
 
         public void addTime( int additionSec ) {
+            if(remainingCounter + additionSec < 60 * 10) {
+                remainingCounter = 60 * 10;
+                return;
+            }
+
             remainingCounter += additionSec;
         }
 

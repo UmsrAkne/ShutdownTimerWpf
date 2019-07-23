@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="{Binding BindingDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Height="160" Width="450">
     <Grid>
-        <WrapPanel Orientation="Vertical" Grid.Column="2" Margin="160,0,0,0">
-            <Button Content="+ 2Hours" Width="130" Margin="3"/>
-            <Button Content="+ 1Hour" Width="130" Margin="3"/>
-            <Button Content="+ 30Min" Width="130" Margin="3"/>
-            <Button Content="+ 10Min" Width="130" Margin="3"/>
-            <Button Content="- 2Hours" Width="130" Margin="3"/>
-            <Button Content="- 1Hour" Width="130" Margin="3"/>
-            <Button Content="- 30Min" Width="130" Margin="3"/>
-            <Button Content="- 10Min" Width="130" Margin="3"/>
+        <WrapPanel Orientation="Vertical" Button.Click="ButtonClicked" Grid.Column="2" Margin="160,0,0,0">
+            <Button Name="plus2hButton" Content="+ 2Hours" Width="130" Margin="3"/>
+            <Button Name="plus1hButton" Content="+ 1Hour" Width="130" Margin="3"/>
+            <Button Name="plus30mButton" Content="+ 30Min" Width="130" Margin="3"/>
+            <Button Name="plus10mButton" Content="+ 10Min" Width="130" Margin="3"/>
+            <Button Name="minus2hButton" Content="- 2Hours" Width="130" Margin="3"/>
+            <Button Name="minus1hButton" Content="- 1Hour" Width="130" Margin="3"/>
+            <Button Name="minus30mButton" Content="- 30Min" Width="130" Margin="3"/>
+            <Button Name="minus10mButton" Content="- 10Min" Width="130" Margin="3"/>
         </WrapPanel>
     </Grid>
 </Window>
