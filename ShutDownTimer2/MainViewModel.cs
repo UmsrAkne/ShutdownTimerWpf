@@ -44,6 +44,7 @@ namespace ShutDownTimer2 {
             timer.Tick += (sender , e) => {
                 remainingCounter -= 1;
                 if(remainingCounter <= 0) {
+                    shutDown();
                     timer.Stop();
                     return;
                 }
@@ -73,6 +74,17 @@ namespace ShutDownTimer2 {
         /// </summary>
         public void shutDown() {
 
+            System.Diagnostics.ProcessStartInfo psi =
+                new System.Diagnostics.ProcessStartInfo();
+
+            psi.FileName = "shutdown.exe";
+            //コマンドラインを指定
+            psi.Arguments = "/s";
+            //ウィンドウを表示しないようにする
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
+
+            System.Diagnostics.Process p = System.Diagnostics.Process.Start(psi);
         }
     }
 }
