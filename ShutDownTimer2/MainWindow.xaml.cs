@@ -26,7 +26,7 @@ namespace ShutDownTimer2 {
             mainViewModel = new MainViewModel();
             mainViewModel.warningDisplaying += () => {
                 Topmost = true;
-                MessageBox.Show("残り１５分を切りました");
+                MessageBox.Show(this ,"残り１５分を切りました");
                 Topmost = false;
             };
 
